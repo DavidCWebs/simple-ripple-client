@@ -1,5 +1,4 @@
-// Grab an existing namespace object, or create a blank object
-// if it doesn't exist
+// Get existing namespace object or create a blank object if it doesn't exist
 const RippleAPI = window.RippleAPI || {};
 
 RippleAPI.rippleLibAPI = require('ripple-lib').RippleAPI;

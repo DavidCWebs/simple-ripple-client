@@ -6,34 +6,36 @@
   <link rel="stylesheet" href="app.css">
 </head>
 <body>
-  <div id="nav"></div>
-  <div class="intro">
-    <h1>Ripple Offline Signing</h1>
-    <p>This form allows you to sign a payment transaction. You should enter the secret whilst offline, ideally in an airgapped computer.</p>
-    <p>A Tails session in an offline computer would be ideal. Copy the output of this page to an online computer. You can then submit the transaction to the Ripple network.</p>
+  <div class="container">
+    <div id="nav"></div>
+    <div class="intro">
+      <h1>Ripple Offline Signing</h1>
+      <p>This form allows you to sign a payment transaction. You should enter the secret whilst offline, ideally in an airgapped computer.</p>
+      <p>A Tails session in an offline computer would be ideal. Copy the output of this page to an online computer. You can then submit the transaction to the Ripple network.</p>
+    </div>
+    <form id="signing-form" name="signing-form">
+      <div>
+        <label for="sender-address">Enter the Ripple address of the sending account:</label>
+        <input name="senderAddress" id="sender-address" type="text">
+      </div>
+      <div>
+        <label for="sender-secret">Enter the associated secret:</label>
+        <input name="senderSecret" id="sender-secret" type="text">
+      </div>
+      <div>
+        <label for="recipient-address">Enter the Ripple address of the RECEIVING account:</label>
+        <input name="recipientAddress" id="recipient-address" type="text">
+      </div>
+      <div>
+        <label for="amount">Amount:</label>
+        <input name="amount" id="amount" type="text">
+      </div>
+      <p>
+        <button id="sign-transaction" class="button" type="submit" name="button">Sign Transaction&nbsp;&raquo;</button>
+      </p>
+    </form>
+    <div id="address"></div>
   </div>
-  <form id="signing-form" name="signing-form">
-    <div>
-      <label for="sender-address">Enter the Ripple address of the sending account:</label>
-      <input name="senderAddress" id="sender-address" type="text">
-    </div>
-    <div>
-      <label for="sender-secret">Enter the associated secret:</label>
-      <input name="senderSecret" id="sender-secret" type="text">
-    </div>
-    <div>
-      <label for="recipient-address">Enter the Ripple address of the RECEIVING account:</label>
-      <input name="recipientAddress" id="recipient-address" type="text">
-    </div>
-    <div>
-      <label for="amount">Amount:</label>
-      <input name="amount" id="amount" type="text">
-    </div>
-    <p>
-      <button id="sign-transaction" class="button" type="submit" name="button">Sign Transaction&nbsp;&raquo;</button>
-    </p>
-  </form>
-  <div id="address"></div>
   <script src="js/ripple-lib.js"></script>
   <script src="js/offline-tx-signing.js"></script>
   <script src="js/common.js"></script>

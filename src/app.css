@@ -1,10 +1,31 @@
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+* { margin: 0; padding: 0; }
+
 body {
-  background: #493838;
-  color: #fff;
+  /*background: #493838;
+  color: #fff;*/
+}
+
+pre {
+  /*white-space: -moz-pre-wrap;*/
+  overflow: auto;
+  margin: 20px 0;
 }
 
 #nav ul {
   padding-left: 0;
+}
+
+.container {
+  width: 50%;
+  margin: 0 auto;
 }
 
 #nav ul li {
@@ -20,9 +41,10 @@ a {
 
 .button {
   border-radius: 0;
-  background: inherit;
-  color: inherit;
-  border: solid 1px #fff;
+  background: orange;
+  color: #fff;
+  border: solid 1px;
+  text-align: center;
   padding: 10px;
 }
 
@@ -44,7 +66,7 @@ table td:select {
 }
 
 .intro {
-  width: 60%;
+  padding: 20px 0;
 }
 
 input {
@@ -56,7 +78,6 @@ input {
   min-width: 400px;
 }
 form {
-  /*margin: 0 auto;*/
   width: 800px;
   padding: 1em;
   border: 1px solid #CCC;
@@ -89,12 +110,4 @@ input:focus, textarea:focus {
 textarea {
   vertical-align: top;
   height: 5em;
-}
-
-.button {
-  padding-left: 90px; /* same size as the label elements */
-}
-
-button {
-  margin-left: .5em;
 }

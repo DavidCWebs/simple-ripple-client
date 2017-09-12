@@ -54,9 +54,8 @@ const controller = {
     api.preparePayment(data.senderAddress, payment, instructions)
       .then(prepared => {
         model.signedPayment = prepared
-        console.log(prepared)
-        console.log(JSON.stringify(model.signedPayment, null, 2))
-        view.signedPayment(prepared)
+        signed = api.sign(prepared.txJSON, model.data.senderSecret)
+        view.signedPayment(signed)
       })
   },
   getData: function() {
@@ -102,8 +101,8 @@ const view = {
   signedPayment: function(signed) {
     signedOutput = JSON.stringify(signed, null, 2)
     const output = `
-    <h2>Signed Payment</h2>
-    <pre>${signedOutput}</pre>
+      <h2>Signed Payment</h2>
+      <pre>${signedOutput}</pre>
     `
     this.output.insertAdjacentHTML('afterbegin', output)
   }
