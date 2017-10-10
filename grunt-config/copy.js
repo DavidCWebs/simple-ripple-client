@@ -11,19 +11,5 @@ module.exports = {
     src: '**',
     dest: 'dist',
     exclude: ['/js', 'ripple-js']
-    // files: [
-    //   {
-    //     src: 'src/index.html',
-    //     dest: 'dist/index.html'
-    //   },
-    //   {
-    //     src: 'src/offline-signing.html',
-    //     dest: 'dist/offline-signing.html'
-    //   },
-    //   {
-    //     src: 'src/app.css',
-    //     dest: 'dist/app.css'
-    //   }
-    // ]
   }
 }

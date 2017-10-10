@@ -86,15 +86,6 @@ const view = {
     const output = `
     <h2>Payment</h2>
     <pre>${payment}</pre>
-    <h2>Raw Values</h2>
-    <pre>
-    {
-      sender: ${data.senderAddress}
-      recipient: ${data.recipientAddress}
-      secret: ${data.senderSecret}
-      amount: ${data.amount}
-    }
-    </pre>
     `
     this.output.insertAdjacentHTML('afterbegin', output)
   },
