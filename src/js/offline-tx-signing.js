@@ -15,6 +15,8 @@ const controller = {
       let formData = new FormData(form)
       formData.append('username', 'Bonzo')
       controller.setData(formData)
+      controller.setPayment()
+      controller.setSignedPayment()
       event.preventDefault()
       view.renderData()
     })
@@ -24,6 +26,8 @@ const controller = {
     for (let keyVals of formData.entries()) {
       model.data[keyVals[0]] = keyVals[1]
     }
+  },
+  setPayment: function() {
     model.payment = {
       source: {
         address: model.data.senderAddress,
@@ -40,8 +44,7 @@ const controller = {
           currency: 'XRP'
         }
       }
-    },
-    controller.setSignedPayment()
+    }
   },
   setSignedPayment: function() {
     const data = this.getData()
@@ -53,6 +56,7 @@ const controller = {
     }
     api.preparePayment(data.senderAddress, payment, instructions)
       .then(prepared => {
+        console.log(prepared)
         model.signedPayment = prepared
         signed = api.sign(prepared.txJSON, model.data.senderSecret)
         view.signedPayment(signed)
@@ -68,6 +72,7 @@ const controller = {
     return model.signedPayment
   }
 }
+
 const view = {
   init: function() {
     this.form = document.forms.namedItem('signing-form')

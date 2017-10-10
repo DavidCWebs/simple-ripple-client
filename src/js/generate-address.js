@@ -6,8 +6,8 @@ const rippleKeypair = RippleAPI.rippleKeypairs
 const view = {
   init: function() {
     this.displayAddress = document.getElementById('address')
-    this.generateAddressButton = document.getElementById('generate-address')
-    this.render()
+    // this.generateAddressButton = document.getElementById('generate-address')
+    //this.render()
   },
   render: function() {
     this.generateAddressButton.addEventListener('click', () => {
@@ -31,20 +31,37 @@ const view = {
 const controller = {
   init: function() {
     view.init()
+    this.watchForm()
   },
-  xsetAddress: () => {
-    model.address = api.generateAddress();
-    console.log(model.address)
+  watchForm: function() {
+    this.generateAddressButton = document.getElementById('generate-address')
+    this.generateAddressButton.addEventListener('click', () => {
+      controller.setAddress()
+      view.display()
+    })
   },
   setAddress: () => {
     const secret = rippleKeypair.generateSeed()
     const keypair = rippleKeypair.deriveKeypair(secret)
-    model.address = {
+    const address = {
       'secret': secret,
       'address': rippleKeypair.deriveAddress(keypair.publicKey),
       'publicKey': keypair.publicKey,
       'privateKey': keypair.privateKey
     }
+    model.address = address
+    controller.sessionStore(address)
+    console.log(JSON.stringify(sessionStorage.getItem('addresses')));
+  },
+  sessionStore: (address) => {
+    var current = sessionStorage.getItem('addresses');
+    if (!current) { // check if an item is already registered
+      current = []; // if not, we initiate an empty array
+    } else {
+      current = JSON.parse(current); // else parse whatever is in
+    }
+    current.push(address); // add the item
+    sessionStorage.setItem('addresses', JSON.stringify(current));
   },
   getAddress: () => {
     return model.address
