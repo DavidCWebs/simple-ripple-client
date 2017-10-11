@@ -54,14 +54,14 @@ const controller = {
     console.log(JSON.stringify(sessionStorage.getItem('addresses')));
   },
   sessionStore: (address) => {
-    var current = sessionStorage.getItem('addresses');
-    if (!current) { // check if an item is already registered
-      current = []; // if not, we initiate an empty array
+    var current = sessionStorage.getItem('addresses')
+    if (!current) {
+      current = [];
     } else {
-      current = JSON.parse(current); // else parse whatever is in
+      current = JSON.parse(current)
     }
-    current.push(address); // add the item
-    sessionStorage.setItem('addresses', JSON.stringify(current));
+    current.push(address)
+    sessionStorage.setItem('addresses', JSON.stringify(current))
   },
   getAddress: () => {
     return model.address
