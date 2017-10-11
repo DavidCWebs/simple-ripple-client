@@ -50,21 +50,23 @@ const controller = {
       'privateKey': keypair.privateKey
     }
     model.address = address
-    controller.sessionStore(address)
-    console.log(JSON.stringify(sessionStorage.getItem('addresses')));
+    controller.store(address)
   },
-  sessionStore: (address) => {
-    var current = sessionStorage.getItem('addresses')
+  store: (address) => {
+    let current = localStorage.getItem('addresses')
     if (!current) {
       current = [];
     } else {
       current = JSON.parse(current)
     }
     current.push(address)
-    sessionStorage.setItem('addresses', JSON.stringify(current))
+    localStorage.setItem('addresses', JSON.stringify(current))
   },
   getAddress: () => {
     return model.address
+  },
+  getGeneratedAddresses: () => {
+    return localStorage.getItem('addresses')
   }
 }
 

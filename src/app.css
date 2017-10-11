@@ -56,11 +56,12 @@ a {
   padding: 40px 0;
 }
 
-table td {
+table td,
+table th {
   padding: 10px;
 }
 
-table, td {
+table, td, th {
   border-collapse: collapse;
   border: solid 1px gray;
 }

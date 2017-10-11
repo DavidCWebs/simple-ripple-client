@@ -7,6 +7,7 @@ const model = {
 const controller = {
   init: function() {
     view.init()
+    view.renderAddresses()
     this.watchForm()
   },
   watchForm: function() {
@@ -70,6 +71,9 @@ const controller = {
   },
   getSignedPayment: function() {
     return model.signedPayment
+  },
+  getGeneratedAddresses: () => {
+    return localStorage.getItem('addresses')
   }
 }
 
@@ -82,6 +86,7 @@ const view = {
     this.amountEl = document.getElementById('amount')
     this.submitEl = document.getElementById('sign-transaction')
     this.output = document.getElementById('address')
+    this.storedAddresses = document.getElementById('stored-addresses')
   },
   renderData: function() {
     const paymentData = controller.getPaymentData()
@@ -93,6 +98,20 @@ const view = {
     <pre>${payment}</pre>
     `
     this.output.insertAdjacentHTML('afterbegin', output)
+  },
+  renderAddresses: function() {
+    const addresses = JSON.parse(controller.getGeneratedAddresses())
+    console.log(addresses)
+    let addressTable = `<table><thead><tr><th>Public Address</th><th>Secret</th></tr></thead>`
+    let addressRow = addresses.map((x) => {
+      return `<tr><td>${x.address}</td><td>${x.secret}</td></tr>`
+    })
+    for (let i = 0; i < addressRow.length; i++) {
+      addressTable += addressRow[i]
+    }
+    addressTable += `</table>`
+
+    this.storedAddresses.insertAdjacentHTML('afterbegin', addressTable)
   },
   signedPayment: function(signed) {
     signedOutput = JSON.stringify(signed, null, 2)
