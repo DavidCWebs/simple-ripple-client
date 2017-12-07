@@ -101,15 +101,26 @@ const view = {
   },
   renderAddresses: function() {
     const addresses = JSON.parse(controller.getGeneratedAddresses())
-    console.log(addresses)
-    let addressTable = `<table><thead><tr><th>Public Address</th><th>Secret</th></tr></thead>`
-    let addressRow = addresses.map((x) => {
-      return `<tr><td>${x.address}</td><td>${x.secret}</td></tr>`
-    })
-    for (let i = 0; i < addressRow.length; i++) {
-      addressTable += addressRow[i]
+    // let addressTable = `<table><thead><tr><th>Public Address</th><th>Secret</th></tr></thead>`
+    // let addressRow = addresses.map((x) => {
+    //   return `<tr><td>${x.address}</td><td>${x.secret}</td></tr>`
+    // })
+    // for (let i = 0; i < addressRow.length; i++) {
+    //   addressTable += addressRow[i]
+    // }
+    // addressTable += `</table>`
+    let addressTable = ''
+    for (var i = 0; i < addresses.length; i++) {
+      let x = addresses[i]
+      addressTable += `
+      <table class="table">
+      <tr><td>Address:</td><td class="selector" title="Double click to select">${x.address}</td></tr>
+      <tr><td>Secret: </td><td class="selector" title="Double click to select">${x.secret}</td></tr>
+      <tr><td>Public Key: </td><td class="form-selector">${x.publicKey}</td></tr>
+      <tr><td>Private Key: </td><td>${x.privateKey}</td></tr>
+      </table>
+      `
     }
-    addressTable += `</table>`
 
     this.storedAddresses.insertAdjacentHTML('afterbegin', addressTable)
   },
